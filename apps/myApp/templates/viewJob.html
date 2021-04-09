@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+   
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/functionsMyapp.js' %}"></script>
+
+    <title>View Job</title>
+</head>
+<body class="bg-lgrey">
+
+    <ul class="nav bg-grad">
+        <li class="nav-item enlarged"> </li>
+        <li class="nav-item mg-auto"><a class="nav-link" href="{% url 'dashboard' %}">Back</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'signout' %}">Sign Out</a></li>
+    </ul>
+
+    <div class="container">
+
+        <h3>{{ job.title }}</h3>
+
+        <div class="bordered">
+            <p class="italic">{{ job.description }}</p>
+            <ul class="list">
+                <li>Location: <span class="highlighted">{{ job.location }}</span></li>
+                <li>Posted by <span class="highlighted">{{ job.job_posted_by.full_name }}</span></li>
+                <li>Posted on <span class="highlighted">{{ job.created_at|date:'F d, Y' }}</span></li>
+            </ul>
+        </div>
+
+        <h4 class="mgt-1"><a class="smaller" href="{% url 'addtomyjobs' id_job=job.id %}">Add To My Jobs</a></h4>
+
+    </div>
+
+</body>
+</html>
